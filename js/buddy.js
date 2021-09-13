@@ -8,6 +8,7 @@ loadBuddies();
 //function to display
 const displayBuddies=data=>{
  const buddies=data.results;//taking all
+ // console.log(buddies)
  const buddiesDiv=document.getElementById('buddies')
  for(const buddy of buddies)//throw loop for getting one by one
  {
