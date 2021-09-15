@@ -1,6 +1,6 @@
 //function for searching food
 
-const searchFood=()=>{
+const searchFood=async()=>{
  const searchField=document.getElementById('search-field');
  const searchText=searchField.value;
  // console.log(searchText)
@@ -12,9 +12,12 @@ const searchFood=()=>{
  else{
    const url=`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;//url wih dynamic name 
  // console.log(url);
- fetch(url)
- .then(res=>res.json())
- .then(data=>displaySearchResult(data.meals))
+ const res=await fetch(url);//await the response
+ const data=await res.json();//await the response
+ displaySearchResult(data.meals);//function calling normally
+ // fetch(url)
+ // .then(res=>res.json())
+ // .then(data=>displaySearchResult(data.meals))
 }
  }
 //load data
@@ -48,17 +51,21 @@ const displaySearchResult=meals=>{
 }
 
 //function to load meal detail
-const loadMealDetail=mealId=>{
+const loadMealDetail=async mealId=>{
   // console.log(mealId);
   const url=`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
-  fetch(url)
-  .then(res=>res.json())
-  .then(data=>displayMealDetail(data.meals[0]))
+  const res=await fetch(url)//await the response
+  const data=await res.json();//await the response
+  displayMealDetail(data.meals[0])//function calling normally
+  // fetch(url)
+  // .then(res=>res.json())
+  // .then(data=>displayMealDetail(data.meals[0]))
 }
 
 //function to display meal detail
 const displayMealDetail=meal=>{
   const mealDetails=document.getElementById('meal-details');
+  mealDetails.textContent='';
   const div=document.createElement('div');
   div.classList.add('card');
   div.innerHTML=`
