@@ -12,9 +12,14 @@ const searchFood=async()=>{
  else{
    const url=`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;//url wih dynamic name 
  // console.log(url);
- const res=await fetch(url);//await the response
+try{
+  const res=await fetch(url);//await the response
  const data=await res.json();//await the response
  displaySearchResult(data.meals);//function calling normally
+}
+catch(error){
+ console.log(error)
+}
  // fetch(url)
  // .then(res=>res.json())
  // .then(data=>displaySearchResult(data.meals))
